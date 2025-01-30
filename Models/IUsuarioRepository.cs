@@ -5,5 +5,7 @@
         void Add(Usuario usuario);
 
         List<Usuario> Get();
+
+        Usuario GetByID(int id);
     }
 }

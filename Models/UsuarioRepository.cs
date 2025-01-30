@@ -22,5 +22,10 @@ namespace API._1.Models
         {
             return _context.Usuarios.ToList(); // trazendo a lista de usuarios do db
         }
+
+        public Usuario GetByID(int id)
+        {
+            return _context.Usuarios.Find(id);
+        }
     }
 }

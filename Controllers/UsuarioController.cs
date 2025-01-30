@@ -18,7 +18,7 @@ namespace API._1.Controllers
         [HttpPost] //adicionar usuario no db
         public IActionResult Add(UsuarioViewModel usuarioView)
         {
-            var usuario = new Usuario(usuarioView.Nome,usuarioView.Idade);
+            var usuario = new Usuario(usuarioView.Nome, usuarioView.Idade);
             _iUsuarioRepository.Add(usuario);
             return Ok();
         }
@@ -26,6 +26,18 @@ namespace API._1.Controllers
         public IActionResult Get()
         {
             var usuario = _iUsuarioRepository.Get();
+            return Ok(usuario);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetByID(int id)
+        {
+            var usuario = _iUsuarioRepository.GetByID(id);
+
+            if(usuario == null)
+            {
+                return NotFound();
+            }
             return Ok(usuario);
         }
 
