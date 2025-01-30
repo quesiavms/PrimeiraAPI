@@ -27,5 +27,20 @@ namespace API._1.Models
         {
             return _context.Usuarios.Find(id);
         }
+
+        public void PutByID(int id, Usuario usuario)
+        {
+            var usuarioExistente = _context.Usuarios.Find(id);
+            if (usuarioExistente == null)
+            {
+                throw new ArgumentException("User not found");
+            }
+
+            usuarioExistente.Nome = usuario.Nome;
+            usuarioExistente.idade = usuario.idade;
+
+            _context.Usuarios.Update(usuarioExistente);
+            _context.SaveChanges();
+        }
     }
 }

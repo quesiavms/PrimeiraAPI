@@ -41,5 +41,20 @@ namespace API._1.Controllers
             return Ok(usuario);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult PutByID(int id, UsuarioViewModel usuarioview)
+        {
+            var usuario = new Usuario(usuarioview.Nome, usuarioview.Idade);
+            try
+            {
+                _iUsuarioRepository.PutByID(id, usuario);
+                return Ok(usuario);
+            }
+            catch (ArgumentException)
+            {
+                return NotFound(); // If user doesn't exist
+            }
+
+        }
     }
 }
