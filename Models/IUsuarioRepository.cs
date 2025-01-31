@@ -9,5 +9,7 @@
         Usuario GetByID(int id);
 
         void PutByID(int id, Usuario usuario);
+
+        void DeleteByID(int id);
     }
 }

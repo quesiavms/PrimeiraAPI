@@ -42,5 +42,17 @@ namespace API._1.Models
             _context.Usuarios.Update(usuarioExistente);
             _context.SaveChanges();
         }
+
+        public void DeleteByID(int id)
+        {
+            var usuarioExiste = _context.Usuarios.Find(id);
+            if(usuarioExiste == null)
+            {
+                throw new ArgumentException("User not Found");
+            }
+
+            _context.Usuarios.Remove(usuarioExiste);
+            _context.SaveChanges();
+        }
     }
 }

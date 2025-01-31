@@ -54,7 +54,18 @@ namespace API._1.Controllers
             {
                 return NotFound(); // If user doesn't exist
             }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteByID(int id)
+        {
+            var usuario = _iUsuarioRepository.GetByID(id);
+            if(usuario == null)
+            {
+                return NotFound();
+            }
 
+            _iUsuarioRepository.DeleteByID(id);
+            return Ok(usuario);
         }
     }
 }
