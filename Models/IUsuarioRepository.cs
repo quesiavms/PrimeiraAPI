@@ -4,7 +4,7 @@
     {
         void Add(Usuario usuario);
 
-        List<Usuario> Get();
+        List<Usuario> Get(int pageNumber, int pageQuantity); //parametros para paginação
 
         Usuario? GetByID(int id);
 

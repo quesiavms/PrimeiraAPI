@@ -18,9 +18,9 @@ namespace API._1.Models
             _context.SaveChanges();
         }
 
-        public List<Usuario> Get()
+        public List<Usuario> Get(int pageNumber, int pageQuantity)
         {
-            return _context.Usuarios.ToList(); // trazendo a lista de usuarios do db
+            return _context.Usuarios.Skip(pageNumber * pageQuantity).Take(pageQuantity).ToList(); // trazendo a lista de usuarios do db
         }
 
         public Usuario GetByID(int id)

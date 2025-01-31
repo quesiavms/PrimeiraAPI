@@ -27,15 +27,13 @@ namespace API._1.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpGet] // pegar do db
-        public IActionResult Get()
+        public IActionResult Get(int pageNumber, int pageQuantity)
         {
-            var usuario = _iUsuarioRepository.Get();
+            var usuario = _iUsuarioRepository.Get(pageNumber, pageQuantity);
             return Ok(usuario);
         }
 
-        [Authorize]
         [HttpGet("{id}")] // pega do db pelo id
         public IActionResult GetByID(int id)
         {
