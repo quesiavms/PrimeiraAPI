@@ -6,7 +6,7 @@
 
         List<Usuario> Get();
 
-        Usuario GetByID(int id);
+        Usuario? GetByID(int id);
 
         void PutByID(int id, Usuario usuario);
 

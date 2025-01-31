@@ -15,10 +15,13 @@ namespace API._1.Models
         public string? Nome{ get; set; }
 
         public int idade { get; set; }
-        public Usuario(string nome, int idade)
+
+        public string Foto { get; set; }
+        public Usuario(string nome, int idade, string foto)
         {
             this.Nome = nome ?? throw new ArgumentNullException("name");
             this.idade = idade;
+            this.Foto = foto;
         }
     }
 }
