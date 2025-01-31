@@ -2,6 +2,6 @@
 {
     public class Key
     {
-        public static string Secret = "minha_chave_secreta_muito_longa_e_segura_1234567890";
+        public static string Secret = "E3176831FD482CBFC8AA811BC98FEBC396BFF44B53B7B";
     }
 }

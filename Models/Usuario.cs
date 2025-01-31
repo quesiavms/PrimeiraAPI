@@ -14,9 +14,9 @@ namespace API._1.Models
         public int id { get; set; }
         public string? Nome{ get; set; }
 
-        public int idade { get; set; }
+        public int? idade { get; set; }
 
-        public string Foto { get; set; }
+        public string? Foto { get; set; }
 
         public Usuario() { }
         public Usuario(string nome, int idade, string foto)
