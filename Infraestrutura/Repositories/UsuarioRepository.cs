@@ -1,4 +1,5 @@
-﻿using API._1.Domain.Models;
+﻿using API._1.Domain.DTOs;
+using API._1.Domain.Models;
 using API._1.Migrations.Data;
 using Microsoft.AspNetCore.Connections;
 
@@ -18,9 +19,18 @@ namespace API._1.Infraestrutura.Repositories
             _context.SaveChanges();
         }
 
-        public List<Usuario> Get(int pageNumber, int pageQuantity)
+        public List<UsuarioDTO> Get(int pageNumber, int pageQuantity)
         {
-            return _context.Usuarios.Skip(pageNumber * pageQuantity).Take(pageQuantity).ToList(); // trazendo a lista de usuarios do db
+            return _context.Usuarios.Skip(pageNumber * pageQuantity)
+                                    .Take(pageQuantity)
+                                    .Select(b => 
+                                    new UsuarioDTO
+                                    {
+                                        Nome = b.Nome,
+                                        idade = b.idade,
+                                        Foto = b.Foto
+                                    })
+                                    .ToList(); // trazendo a lista de usuarios do db
         }
 
         public Usuario GetByID(int id)

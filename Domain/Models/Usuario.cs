@@ -1,4 +1,4 @@
-﻿using API._1.Data;
+﻿using API._1.Migrations.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
