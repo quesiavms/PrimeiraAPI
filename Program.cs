@@ -78,13 +78,20 @@ var app = builder.Build();
 // Configurando o pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
+    app.UseExceptionHandler("/error-development");
     app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+}
+app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "MeuPrimeiroApi v1");
         c.RoutePrefix = "swagger";
     });
-}
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

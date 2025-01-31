@@ -32,11 +32,14 @@ namespace API._1.Controllers
         [HttpGet] // pegar do db
         public IActionResult Get(int pageNumber, int pageQuantity)
         {
-            _logger.Log(LogLevel.Error, "Theres a error"); //aparece no cmd
-            
+            //_logger.Log(LogLevel.Error, "Theres a error"); //aparece no cmd
+
+            //throw new Exception("Erro de Teste");
+
             var usuario = _iUsuarioRepository.Get(pageNumber, pageQuantity);
 
-            _logger.LogInformation("Teste");
+            //_logger.LogInformation("Teste"); //aparece no cmd tambem
+
             return Ok(usuario);
         }
 
