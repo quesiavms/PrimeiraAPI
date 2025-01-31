@@ -1,8 +1,7 @@
-﻿using API._1.Data;
-using API._1.Models;
+﻿using API._1.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace API._1.Data
+namespace API._1.Migrations.Data
 {
     public class AppDbContext : DbContext
     {

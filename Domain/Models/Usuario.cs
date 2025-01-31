@@ -1,9 +1,8 @@
-﻿using API._1.Models;
-using API._1.Data;
+﻿using API._1.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace API._1.Models
+namespace API._1.Domain.Models
 {
     /* classe com atributos iguais aos db (precisam ser iguais, exatamente iguais) */
     [Table("Usuarios")] //falando para o sistema o nome da tabela do banco, tendo que o nome da nossa classe é diferente
@@ -12,7 +11,7 @@ namespace API._1.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        public string? Nome{ get; set; }
+        public string? Nome { get; set; }
 
         public int? idade { get; set; }
 
@@ -21,9 +20,9 @@ namespace API._1.Models
         public Usuario() { }
         public Usuario(string nome, int idade, string foto)
         {
-            this.Nome = nome ?? throw new ArgumentNullException("name");
+            Nome = nome ?? throw new ArgumentNullException("name");
             this.idade = idade;
-            this.Foto = foto;
+            Foto = foto;
         }
     }
 }

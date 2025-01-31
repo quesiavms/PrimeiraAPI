@@ -1,4 +1,4 @@
-﻿namespace API._1.Swagger;
+﻿namespace API._1.Application.Swagger;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;

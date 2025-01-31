@@ -1,4 +1,4 @@
-﻿namespace API._1.Models
+﻿namespace API._1.Domain.Models
 {
     public interface IUsuarioRepository
     {

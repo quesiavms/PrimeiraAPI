@@ -1,8 +1,8 @@
-﻿using API._1.Models;
-using API._1.Data;
+﻿using API._1.Domain.Models;
+using API._1.Migrations.Data;
 using Microsoft.AspNetCore.Connections;
 
-namespace API._1.Models
+namespace API._1.Infraestrutura.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
@@ -46,7 +46,7 @@ namespace API._1.Models
         public void DeleteByID(int id)
         {
             var usuarioExiste = _context.Usuarios.Find(id);
-            if(usuarioExiste == null)
+            if (usuarioExiste == null)
             {
                 throw new ArgumentException("User not Found");
             }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
+using API._1.Application.ViewModel;
+using API._1.Domain.Models;
 using API._1.Models;
-using API._1.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

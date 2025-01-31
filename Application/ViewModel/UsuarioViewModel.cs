@@ -1,4 +1,4 @@
-﻿namespace API._1.ViewModel
+﻿namespace API._1.Application.ViewModel
 {
     public class UsuarioViewModel //o que esta sendo mostrado
     {

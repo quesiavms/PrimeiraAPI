@@ -1,10 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using API._1.Models;
+using API._1.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 
-namespace API._1.Services
+namespace API._1.Application.Services
 {
     public class TokenService
     {
@@ -13,7 +13,7 @@ namespace API._1.Services
             var key = Encoding.ASCII.GetBytes(Key.Secret);
             var tokenConfig = new SecurityTokenDescriptor
             {
-                Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]
+                Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("UsuarioId", usuario.id.ToString()),
                 }),

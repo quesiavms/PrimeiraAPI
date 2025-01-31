@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 using API._1;
-using API._1.Data;
-using API._1.Models;
-using API._1.Swagger;
+using API._1.Domain.Models;
+using API._1.Infraestrutura.Repositories;
+using API._1.Application.Swagger;
+using API._1.Migrations.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
