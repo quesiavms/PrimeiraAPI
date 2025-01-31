@@ -1,4 +1,5 @@
-﻿using API._1.Models;
+﻿using System.Collections.Specialized;
+using API._1.Models;
 using API._1.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,11 @@ namespace API._1.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepository _iUsuarioRepository;
-
-        public UsuarioController(IUsuarioRepository iUsuarioRepository)
+        private readonly ILogger<UsuarioController> _logger;
+        public UsuarioController(IUsuarioRepository iUsuarioRepository, ILogger<UsuarioController> logger)
         {
             _iUsuarioRepository = iUsuarioRepository ?? throw new ArgumentNullException(nameof(IUsuarioRepository));
+            _logger = logger ?? throw new ArgumentException(nameof(ILogger));
         }
         [Authorize]
         [HttpPost] //adicionar usuario no db
@@ -30,7 +32,11 @@ namespace API._1.Controllers
         [HttpGet] // pegar do db
         public IActionResult Get(int pageNumber, int pageQuantity)
         {
+            _logger.Log(LogLevel.Error, "Theres a error"); //aparece no cmd
+            
             var usuario = _iUsuarioRepository.Get(pageNumber, pageQuantity);
+
+            _logger.LogInformation("Teste");
             return Ok(usuario);
         }
 
