@@ -17,6 +17,8 @@ namespace API._1.Models
         public int idade { get; set; }
 
         public string Foto { get; set; }
+
+        public Usuario() { }
         public Usuario(string nome, int idade, string foto)
         {
             this.Nome = nome ?? throw new ArgumentNullException("name");

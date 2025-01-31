@@ -1,5 +1,6 @@
 ﻿using API._1.Models;
 using API._1.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API._1.Controllers
@@ -14,7 +15,7 @@ namespace API._1.Controllers
         {
             _iUsuarioRepository = iUsuarioRepository ?? throw new ArgumentNullException(nameof(IUsuarioRepository));
         }
-
+        [Authorize]
         [HttpPost] //adicionar usuario no db
         public IActionResult Add([FromForm] UsuarioViewModel usuarioView) //from form para enviar arquivos nao apenas no formato json
         {
@@ -26,6 +27,7 @@ namespace API._1.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpGet] // pegar do db
         public IActionResult Get()
         {
@@ -33,6 +35,7 @@ namespace API._1.Controllers
             return Ok(usuario);
         }
 
+        [Authorize]
         [HttpGet("{id}")] // pega do db pelo id
         public IActionResult GetByID(int id)
         {
@@ -45,6 +48,7 @@ namespace API._1.Controllers
             return Ok(usuario);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("{id}/download")]
         public IActionResult DownloadFoto(int id)
@@ -55,6 +59,7 @@ namespace API._1.Controllers
             return File(dataBytes, "image/png");
         }
 
+        [Authorize]
         [HttpPut("{id}")] // atualiza user pelo id
         public IActionResult PutByID(int id, UsuarioViewModel usuarioview)
         {
@@ -70,6 +75,7 @@ namespace API._1.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")] // deleta user pelo id
         public IActionResult DeleteByID(int id)
         {
