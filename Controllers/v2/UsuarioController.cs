@@ -7,10 +7,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API._1.Controllers
+namespace API._1.Controllers.v2
 {
     [ApiController]
-    [Route("api/v1/usuario")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/usuario")]
+
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepository _iUsuarioRepository;

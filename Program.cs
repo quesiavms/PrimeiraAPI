@@ -12,6 +12,9 @@ using API._1.Application.Swagger;
 using API._1.Migrations.Data;
 using API._1.Application.Mapping;
 using API._1.Domain.Models.UsuarioAggregate;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,19 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 // Configurando Swagger
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+});
+
+builder.Services.AddVersionedApiExplorer(setup =>
+{
+    setup.GroupNameFormat = "'v'VVV"; // Exemplo: v1, v2, etc.
+    setup.SubstituteApiVersionInUrl = true; // Substitui a versão na URL
+});
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.OperationFilter<SwaggerDefaultValues>();
@@ -53,6 +69,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
+
+
 // Configurando autenticação JWT
 var key = Encoding.ASCII.GetBytes(API._1.Key.Secret);
 builder.Services.AddAuthentication(x =>
@@ -78,24 +98,26 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(DomainToDTOMapping));
 
 var app = builder.Build();
+var versionDescriptionProvider = app.Services.GetRequiredService< IApiVersionDescriptionProvider>();
 
 // Configurando o pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/error-development");
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        foreach (var description in versionDescriptionProvider.ApiVersionDescriptions)
+        {
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                $"Web API - {description.GroupName.ToUpper()}");
+        }
+    });
 }
 else
 {
     app.UseExceptionHandler("/error");
 }
-app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MeuPrimeiroApi v1");
-        c.RoutePrefix = "swagger";
-    });
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

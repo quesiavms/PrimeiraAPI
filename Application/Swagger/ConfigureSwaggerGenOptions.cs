@@ -22,7 +22,7 @@ public class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {
         var info = new OpenApiInfo()
         {
-            Title = "Web.API - Filipe Brito Dev",
+            Title = "Web.API - Quesia Silva",
             Version = description.ApiVersion.ToString()
         };
 
