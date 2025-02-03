@@ -1,5 +1,5 @@
 ﻿using API._1.Domain.DTOs;
-using API._1.Domain.Models;
+using API._1.Domain.Models.UsuarioAggregate;
 using API._1.Migrations.Data;
 using Microsoft.AspNetCore.Connections;
 

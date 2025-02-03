@@ -1,6 +1,6 @@
 ﻿using API._1.Domain.DTOs;
 
-namespace API._1.Domain.Models
+namespace API._1.Domain.Models.UsuarioAggregate
 {
     public interface IUsuarioRepository
     {

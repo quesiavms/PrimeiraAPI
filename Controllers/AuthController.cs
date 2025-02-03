@@ -12,7 +12,7 @@ namespace API._1.Controllers
         {
             if(username == "usuario" && password == "123456")
             {
-                var token = TokenService.GenerateToken(new Domain.Models.Usuario());
+                var token = TokenService.GenerateToken(new Domain.Models.UsuarioAggregate.Usuario());
                 return Ok(token);
             }
             return BadRequest("Username or Password Invalid");

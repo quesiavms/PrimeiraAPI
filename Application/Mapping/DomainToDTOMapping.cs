@@ -1,5 +1,5 @@
 ﻿using API._1.Domain.DTOs;
-using API._1.Domain.Models;
+using API._1.Domain.Models.UsuarioAggregate;
 using AutoMapper;
 
 namespace API._1.Application.Mapping

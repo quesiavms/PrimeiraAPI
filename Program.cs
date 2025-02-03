@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 using API._1;
-using API._1.Domain.Models;
 using API._1.Infraestrutura.Repositories;
 using API._1.Application.Swagger;
 using API._1.Migrations.Data;
 using API._1.Application.Mapping;
+using API._1.Domain.Models.UsuarioAggregate;
 
 var builder = WebApplication.CreateBuilder(args);
 

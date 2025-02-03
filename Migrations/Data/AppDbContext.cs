@@ -1,4 +1,4 @@
-﻿using API._1.Domain.Models;
+﻿using API._1.Domain.Models.UsuarioAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace API._1.Migrations.Data

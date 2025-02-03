@@ -2,6 +2,7 @@
 using API._1.Application.ViewModel;
 using API._1.Domain.DTOs;
 using API._1.Domain.Models;
+using API._1.Domain.Models.UsuarioAggregate;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
