@@ -1,6 +1,8 @@
 ﻿using System.Collections.Specialized;
 using API._1.Application.ViewModel;
+using API._1.Domain.DTOs;
 using API._1.Domain.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +14,14 @@ namespace API._1.Controllers
     {
         private readonly IUsuarioRepository _iUsuarioRepository;
         private readonly ILogger<UsuarioController> _logger;
-        public UsuarioController(IUsuarioRepository iUsuarioRepository, ILogger<UsuarioController> logger)
+        private readonly IMapper _mapper;
+        public UsuarioController(IUsuarioRepository iUsuarioRepository, ILogger<UsuarioController> logger, IMapper mapper)
         {
-            _iUsuarioRepository = iUsuarioRepository ?? throw new ArgumentNullException(nameof(IUsuarioRepository));
-            _logger = logger ?? throw new ArgumentException(nameof(ILogger));
+            _iUsuarioRepository = iUsuarioRepository ?? throw new ArgumentNullException(nameof(iUsuarioRepository));
+            _logger = logger ?? throw new ArgumentException(nameof(logger));
+            _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
+        
         [Authorize]
         [HttpPost] //adicionar usuario no db
         public IActionResult Add([FromForm] UsuarioViewModel usuarioView) //from form para enviar arquivos nao apenas no formato json
@@ -93,6 +98,16 @@ namespace API._1.Controllers
             }
 
             _iUsuarioRepository.DeleteByID(id);
+            return Ok(usuario);
+        }
+
+        [HttpGet]
+        [Route("/automapper/{id}")] //usando o automapper
+        public IActionResult Search(int id)
+        {
+            var usuario = _iUsuarioRepository.GetByID(id);
+            var usuarioDTOS = _mapper.Map<UsuarioDTO>(usuario);
+
             return Ok(usuario);
         }
     }

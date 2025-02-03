@@ -11,6 +11,7 @@ using API._1.Domain.Models;
 using API._1.Infraestrutura.Repositories;
 using API._1.Application.Swagger;
 using API._1.Migrations.Data;
+using API._1.Application.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,6 +74,8 @@ builder.Services.AddAuthentication(x =>
 
 // Adicionando controllers
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(DomainToDTOMapping));
 
 var app = builder.Build();
 
